@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   jboss:
-    build: ./redhat/
+    build: https://raw.githubusercontent.com/janstreubel/datasource01/main/redhat/Dockerfile
     container_name: UIB8
     ports:
       - "7022:22"
