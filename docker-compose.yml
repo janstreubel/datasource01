@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  jboss:
+    build: ./OS_Red_Hat/
+    container_name: UIB8
+    ports:
+      - "7022:22"
