@@ -10,6 +10,8 @@ RUN varRootPass=trustno1 varPdbuserPass=pdbuser; \
 		echo "root:{$varRootPass}" | chpasswd ; \
 		useradd -g users -d /home/pdbuser -m -p pdbuser -s /bin/bash pdbuser; \
 		echo "pdbuser:{$varPdbuserPass}" | chpasswd ; \
+		yum -y install less ksh bzip2 hostname openssh openssh-server openssh-clients openssl-libs sudo zip unzip java-1.8.0-openjdk-devel;
 		echo "echo from build" > /tmp/echo.log
 
-USER pdbuser
+#		usermod -aG sudo pdbuser
+#USER pdbuser
