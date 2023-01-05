@@ -5,5 +5,11 @@ FROM registry.access.redhat.com/ubi8/ubi-init:8.7-9
 ARG varRootPass
 ARG varPdbuserPass
 
-RUN varRootPass=trustno1 varPdbuserPass=pdbuser echo "root:{$varRootPass}" | chpasswd ; \
+# set root password
+RUN varRootPass=trustno1 varPdbuserPass=pdbuser; \ 
+		echo "root:{$varRootPass}" | chpasswd ; \
+		useradd -g users -d /home/pdbuser -m -p pdbuser -s /bin/bash pdbuser; \
+		echo "pdbuser:{$varPdbuserPass}" | chpasswd ; \
 		echo "echo from build" > /tmp/echo.log
+
+USER pdbuser
