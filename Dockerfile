@@ -12,13 +12,15 @@ ARG varPdbuserPass
 RUN varRootPass=trustno1 varPdbuserPass=pdbuser
 
 # set password for root
-RUN echo "root:${varRootPass}" | chpasswd;\ echo ${varRootPass} >> /tmp/build.log
+RUN echo "root:${varRootPass}" | chpasswd; \ 
+	echo ${varRootPass} >> /tmp/build.log
 
 # add user pdbuser
 RUN useradd -g users -d /home/pdbuser -m -p pdbuser -s /bin/bash pdbuser
 
 #set password for pdbuser
-RUN	echo "pdbuser:${varPdbuserPass}" | chpasswd;\ echo ${varPdbuserPass} >> /tmp/build.log
+RUN	echo "pdbuser:${varPdbuserPass}" | chpasswd; \ 
+	echo ${varPdbuserPass} >> /tmp/build.log
 	
 # ksh removed, only available in official RHEL repository
 RUN yum -y install less bzip2 hostname openssh openssh-server openssh-clients openssl-libs sudo zip unzip java-1.8.0-openjdk-devel 
