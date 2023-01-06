@@ -8,7 +8,7 @@ FROM registry.access.redhat.com/ubi8/ubi-init:8.7-9
 ARG varRootPass
 ARG varPdbuserPass
 
-RUN << EOF
+RUN <<EOF
 	varRootPass=trustno1
 	echo "root:${varRootPass}" | chpasswd
 	echo ${varRootPass} >> /tmp/build.log
