@@ -19,7 +19,7 @@ RUN yum -y install less bzip2 hostname openssh openssh-server openssh-clients op
 
 
 # add user to wheel = sudo group
-usermod -aG wheel pdbuser
+RUN usermod -aG wheel pdbuser
 
 # switch from root to pdbuser
 USER pdbuser
