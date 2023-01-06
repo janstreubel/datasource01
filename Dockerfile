@@ -9,18 +9,17 @@ ARG varPdbuserPass
 
 
 RUN varRootPass=trustno1 varPdbuserPass=pdbuser; \
-		echo "root:${varRootPass}" | chpasswd; \
-		echo ${varRootPass} > /tmp/build.log
-
-
+		echo "root:${varRootPass}" | chpasswd
 
 RUN useradd -g users -d /home/pdbuser -m -p pdbuser -s /bin/bash pdbuser; \ 
 	echo "pdbuser:${varPdbuserPass}" | chpasswd 
 	
-# ksh removed
-# RUN yum -y install less bzip2 hostname openssh openssh-server openssh-clients openssl-libs sudo zip unzip java-1.8.0-openjdk-devel 
+# ksh removed, only available in official RHEL repository
+RUN yum -y install less bzip2 hostname openssh openssh-server openssh-clients openssl-libs sudo zip unzip java-1.8.0-openjdk-devel 
 
-# usermod -aG sudo pdbuser
+
+# add user to wheel = sudo group
+usermod -aG wheel pdbuser
 
 # switch from root to pdbuser
-# USER pdbuser
+USER pdbuser
