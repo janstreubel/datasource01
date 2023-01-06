@@ -16,7 +16,7 @@ RUN varRootPass=trustno1 && \
 	echo "pdbuser:${varPdbuserPass}" | chpasswd && \
 	echo ${varPdbuserPass} >> /tmp/build.log && \
 	yum -y install less bzip2 hostname openssh openssh-server openssh-clients openssl-libs sudo zip unzip java-1.8.0-openjdk-devel && \
-	usermod -aG wheel pdbuser && \
+	usermod -aG wheel pdbuser
 
 
 # set password for root
