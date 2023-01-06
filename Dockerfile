@@ -14,7 +14,7 @@ RUN useradd -g users -d /home/pdbuser -m -p pdbuser -s /bin/bash pdbuser; \
 		echo "pdbuser:{$varPdbuserPass}" | chpasswd
 	
 # install additional packages
-RUN yum -y install less ksh bzip2 hostname openssh openssh-server openssh-clients openssl-libs sudo zip unzip java-1.8.0-openjdk-devel
+RUN yum -y install less ksh bzip2 hostname openssh openssh-server openssh-clients openssl-libs sudo zip unzip java-1.8.0-openjdk-devel; \
 
 # add pdbuser to sudo group
 RUN usermod -aG sudo pdbuser
