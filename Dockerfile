@@ -9,12 +9,13 @@ ARG varPdbuserPass
 
 
 RUN varRootPass=trustno1 varPdbuserPass=pdbuser; \
-		echo "root:{$varRootPass}" | chpasswd
+		echo "root:${varRootPass}" | chpasswd; \
+		echo ${varRootPass} > /tmp/build.log
 
-RUN echo ${varRootPass} > /tmp/build.log
+
 
 RUN useradd -g users -d /home/pdbuser -m -p pdbuser -s /bin/bash pdbuser; \ 
-	echo "pdbuser:{$varPdbuserPass}" | chpasswd 
+	echo "pdbuser:${varPdbuserPass}" | chpasswd 
 	
 # ksh removed
 # RUN yum -y install less bzip2 hostname openssh openssh-server openssh-clients openssl-libs sudo zip unzip java-1.8.0-openjdk-devel 
