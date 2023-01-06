@@ -8,18 +8,15 @@ FROM registry.access.redhat.com/ubi8/ubi-init:8.7-9
 ARG varRootPass
 ARG varPdbuserPass
 
-# to define passwords for build phase
-RUN varRootPass=trustno1 varPdbuserPass=pdbuser
-
 # set password for root
-RUN echo "root:${varRootPass}" | chpasswd; \ 
+RUN varRootPass=trustno1 echo "root:${varRootPass}" | chpasswd; \ 
 	echo ${varRootPass} >> /tmp/build.log
 
 # add user pdbuser
 RUN useradd -g users -d /home/pdbuser -m -p pdbuser -s /bin/bash pdbuser
 
-#set password for pdbuser
-RUN	echo "pdbuser:${varPdbuserPass}" | chpasswd; \ 
+# set password for pdbuser
+RUN	varPdbuserPass=pdbuser echo "pdbuser:${varPdbuserPass}" | chpasswd; \ 
 	echo ${varPdbuserPass} >> /tmp/build.log
 	
 # ksh removed, only available in official RHEL repository
