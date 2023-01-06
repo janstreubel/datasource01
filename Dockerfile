@@ -1,18 +1,15 @@
 # base image Red Hat UBI8 Init
-#FROM registry.access.redhat.com/ubi8/ubi-init:8.7-9
-FROM registry.access.redhat.com/rhel7:7.9-887
+FROM registry.access.redhat.com/ubi8/ubi-init:8.7-9
 
-# variable declaration for build usage only
+subscription needed
+#FROM registry.access.redhat.com/rhel7:7.9-887
+
 ARG varRootPass
 ARG varPdbuserPass
 
-# set root password
 RUN varRootPass=trustno1 varPdbuserPass=pdbuser; \
 		echo "root:{$varRootPass}" | chpasswd
 
-# add pdbuser and set password
-# install additional packages
-# add pdbuser to sudo group
 RUN useradd -g users -d /home/pdbuser -m -p pdbuser -s /bin/bash pdbuser; \ 
 	echo "pdbuser:{$varPdbuserPass}" | chpasswd 
 	
