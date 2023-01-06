@@ -1,6 +1,6 @@
 # base image Red Hat UBI8 Init
 #FROM registry.access.redhat.com/ubi8/ubi-init:8.7-9
-FROM registry.access.redhat.com/ubi9/ubi-init:9.1.0-5.1669633213
+FROM registry.access.redhat.com/rhel7:7.9-887
 
 # variable declaration for build usage only
 ARG varRootPass
