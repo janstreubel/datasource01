@@ -8,19 +8,15 @@ FROM registry.access.redhat.com/ubi8/ubi-init:8.7-9
 ARG varRootPass
 ARG varPdbuserPass
 
-RUN <<EOF
-	varRootPass=trustno1
-	echo "root:${varRootPass}" | chpasswd
-	echo ${varRootPass} >> /tmp/build.log
-	useradd -g users -d /home/pdbuser -m -p pdbuser -s /bin/bash pdbuser
-	
-	varPdbuserPass=pdbuser
-	echo "pdbuser:${varPdbuserPass}" | chpasswd
-	echo ${varPdbuserPass} >> /tmp/build.log
-	
-	yum -y install less bzip2 hostname openssh openssh-server openssh-clients openssl-libs sudo zip unzip java-1.8.0-openjdk-devel
-	usermod -aG wheel pdbuser
-EOF
+RUN varRootPass=trustno1 && \
+	echo "root:${varRootPass}" | chpasswd && \
+	echo ${varRootPass} >> /tmp/build.log && \
+	useradd -g users -d /home/pdbuser -m -p pdbuser -s /bin/bash pdbuser && \
+	varPdbuserPass=pdbuser && \
+	echo "pdbuser:${varPdbuserPass}" | chpasswd && \
+	echo ${varPdbuserPass} >> /tmp/build.log && \
+	yum -y install less bzip2 hostname openssh openssh-server openssh-clients openssl-libs sudo zip unzip java-1.8.0-openjdk-devel && \
+	usermod -aG wheel pdbuser && \
 
 
 # set password for root
