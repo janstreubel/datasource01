@@ -18,4 +18,4 @@ RUN useradd -g users -d /home/pdbuser -m -p pdbuser -s /bin/bash pdbuser; \
 # usermod -aG sudo pdbuser
 
 # switch from root to pdbuser
-USER pdbuser
+# USER pdbuser
